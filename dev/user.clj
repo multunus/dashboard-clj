@@ -1,6 +1,5 @@
 (ns user
   (:require [dashboard-clj.server]
-            [ring.middleware.reload :refer [wrap-reload]]
             [figwheel-sidecar.repl-api :as figwheel]))
 
 ;; Let Clojure warn you when it needs to reflect on types, or when it does math
@@ -8,8 +7,6 @@
 ;; degraded performance.
 (set! *warn-on-reflection* true)
 (set! *unchecked-math* :warn-on-boxed)
-(def http-handler
-  (wrap-reload #'dashboard-clj.server/http-handler))
 
 (defn run []
   (figwheel/start-figwheel!))

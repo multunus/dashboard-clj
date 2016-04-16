@@ -13,7 +13,8 @@
                  [compojure "1.5.0"]
                  [environ "1.0.2"]
                  [http-kit "2.1.19"]
-                 [reagent "0.5.1"]]
+                 [reagent "0.6.0-alpha"]
+                 [cljsjs/react-grid-layout "0.10.8-0"]]
 
   :plugins [[lein-cljsbuild "1.1.1"]
             [lein-environ "1.0.1"]]
@@ -65,7 +66,6 @@
              ;; assets and API endpoints can all be accessed on the same host
              ;; and port. If you prefer a separate server process then take this
              ;; out and start the server with `lein run`.
-             :ring-handler user/http-handler
 
              ;; Start an nREPL server into the running figwheel process. We
              ;; don't do this, instead we do the opposite, running figwheel from

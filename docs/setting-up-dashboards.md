@@ -10,7 +10,7 @@ lein new chestnut <your-dashboard-name> -- --vanilla --http-kit
 
 ```
 
-## Set dashboard-cljs as a dependecy
+## Set up dashboard-clj as a dependecy
 
 Add dashbaord-clj in your project.clj dependencies
 
@@ -22,12 +22,39 @@ Add dashbaord-clj in your project.clj dependencies
 
 ## Setup datasources
 
-TBD
+### Configure jobs
 
+A job requires a data source and a schedule. Data source is the way to collect data periodically as per the schedule and publish it to the dashboard. You could use the following configuration to setup a job,
+
+```
+
+(def jobs [{
+:data-source {
+                :name banglore-weather
+                :fn :dashboard-clj.plugins.weather.core/fetch
+                :args [{:city "Bangalore"}]
+             }
+:schedule {
+                :type :repeat
+                :seconds 10
+                :minutes 0
+                :hours 0
+                :start-in 0
+}}])
+
+```
+
+### Start jobs
+
+```
+
+(dashboard-clj.job/start jobs)
+
+```
 
 ## setup dashboards
 
-go to the main cljs namespace in your application. If you project name is project-health-dashboard, this might be project-health-dashboard.core
+go to the main cljs namespace in your application. If your project name is `project-health-dashboard`, this might be `project-health-dashboard.core`
 
 ### A simple dashboard with two widgets, which uses a grid layout
 

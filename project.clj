@@ -13,6 +13,7 @@
                  [compojure "1.5.0"]
                  [environ "1.0.2"]
                  [http-kit "2.1.19"]
+                 [com.stuartsierra/component "0.3.1"]
                  [reagent "0.6.0-alpha"]
                  [cljsjs/react-grid-layout "0.10.8-0"]]
 
@@ -36,6 +37,8 @@
   ;; because that's where our development helper functions like (run) and
   ;; (browser-repl) live.
   :repl-options {:init-ns user}
+
+  :env { :http-port 10555}
 
   :cljsbuild {:builds
               {:app

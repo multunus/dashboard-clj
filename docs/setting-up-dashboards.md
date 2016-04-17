@@ -54,18 +54,24 @@ A job requires a data source and a schedule. Data source is the way to collect d
 
 ## setup dashboards
 
-go to the main cljs namespace in your application. If your project name is `project-health-dashboard`, this might be `project-health-dashboard.core`
+go to the main cljs namespace in your application. If your project name is `deliverit-dashboard`, this might be `deliverit-dashboard.core`
 
 ### A simple dashboard with two widgets, which uses a grid layout
 
 ```
 
-(ns project-health-dashboard.core
-    (:require [dashboard-clj.core :as dash]))
+(ns deliverit-dashboard.core
+  (:require [dashboard-clj.core :as d]
+            [dashboard-clj.layouts.grid-layout :as grid]
+            [dashboard-clj.widgets.simple-text :as s]))
 
-(def layout (dash/grid-layout
-                [dash/widgets.static-text-widget {:name :static-widget-one :text "Hello" :post {:x 0 :y 0 :h 1 :w 2 }}]
-                [dash/widgets.static-text-widget {:name :static-widget-two :text "World!!" :pos {:x 0 :y 1 :h 1 :w 2}}]))
+
+
+(def layout (grid/grid-layout [[s/simple-text-widget {:name :widget-one :text "Hello world" :pos {:x 0 :y 0 :h 1 :w 2 }}]
+                               [s/simple-text-widget {:name :widget-two :text "World!!" :pos {:x 0 :y 1 :h 1 :w 2}}]]))
+
+
+(d/render-dashboard layout "app")
     
 ```
 

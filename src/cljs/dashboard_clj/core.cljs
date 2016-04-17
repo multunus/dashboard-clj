@@ -1,11 +1,8 @@
 (ns dashboard-clj.core
-  (:require [reagent.core :as reagent :refer [atom]]))
+  (:require [reagent.core :as r :refer [atom]]
+            [cljsjs.react-grid-layout]
+            [dashboard-clj.layouts.grid-layout :as layout]))
 
-(enable-console-print!)
 
-(defonce app-state (atom {:text "Hello Chestnut!"}))
-
-(defn greeting []
-  [:h1 (:text @app-state)])
-
-(reagent/render [greeting] (js/document.getElementById "app"))
+(defn render-dashboard [layout, element_id]
+  (r/render layout (.getElementById js/document  element_id)))

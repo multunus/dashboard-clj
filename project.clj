@@ -14,6 +14,7 @@
                  [environ "1.0.2"]
                  [http-kit "2.1.19"]
                  [com.stuartsierra/component "0.3.1"]
+                 [org.immutant/scheduling "2.1.3"]
                  [reagent "0.6.0-alpha"]
                  [cljsjs/react-grid-layout "0.10.8-0"]]
 

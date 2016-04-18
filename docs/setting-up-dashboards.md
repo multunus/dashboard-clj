@@ -44,7 +44,7 @@ Data source requires a unique name, a fully qualified function name and a schedu
 
 ```
 
-(dashboard-clj.datasources/init datasources)
+(dashboard-clj.core/start datasources {:port 8000})
 
 ```
 

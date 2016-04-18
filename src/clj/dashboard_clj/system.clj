@@ -9,3 +9,6 @@
   (component/system-map
    :server (webserver/new-webserver routes/http-handler http-port)
    :scheduler (scheduler/new-scheduler datasources)))
+
+(defn start [http-port datasources]
+  (component/start (->system http-port datasources)))

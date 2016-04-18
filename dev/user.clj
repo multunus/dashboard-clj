@@ -15,7 +15,7 @@
 
 (defn run [datasources]
   (alter-var-root #'system (fn [_]
-                             (component/start (s/->system (Integer/parseInt (env :http-port)) datasources))))
+                             (s/start (Integer/parseInt (env :http-port)) datasources)))
   (figwheel/start-figwheel!))
 
 (defn stop []

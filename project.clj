@@ -32,7 +32,7 @@
   :uberjar-name "dashboard-clj.jar"
 
   ;; Use `lein run` if you just want to start a HTTP server, without figwheel
-  :main dashboard-clj.server
+  ;;:main dashboard-clj.core
 
   ;; nREPL by default starts in the :main namespace, we want to start in `user`
   ;; because that's where our development helper functions like (run) and

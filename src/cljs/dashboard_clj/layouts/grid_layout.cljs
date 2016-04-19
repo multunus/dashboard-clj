@@ -5,9 +5,6 @@
 (def grid-layout-adapter (r/adapt-react-class js/ReactGridLayout))
 
 
-(defn tester[]
-  "hiere")
-
 (defn create-widget-from-args [[widget opts]]
   [:div {:key (:name opts) :_grid (:pos opts)}
    [widget (:text opts)]])

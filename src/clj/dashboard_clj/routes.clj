@@ -15,8 +15,11 @@
         :body (io/input-stream (io/resource "public/index.html"))})
   (resources "/"))
 
-(def http-handler
+(defn ->http-handler [ring-ajax-post ring-ajax-get-or-ws-handshake]
   (-> routes
+      (compojure.core/routes
+       (GET "/chsk" req (ring-ajax-get-or-ws-handshake req))
+       (POST "/chsk" req (ring-ajax-post req)))
       (wrap-defaults api-defaults)
       wrap-with-logger
       wrap-gzip))

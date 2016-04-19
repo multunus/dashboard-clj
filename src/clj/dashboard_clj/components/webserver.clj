@@ -2,11 +2,13 @@
   (:require [com.stuartsierra.component :as component]
             [org.httpkit.server :refer [run-server]]))
 
-(defrecord WebServer [server handler options]
+(defrecord WebServer [server ->http-handler options websocket]
   component/Lifecycle
   (start [component]
-    (let [handler (get component :handler)
-          server  (run-server handler options)]
+    (let [handler                       (get component :handler)
+          ring-ajax-post                (get websocket :ring-ajax-post)
+          ring-ajax-get-or-ws-handshake (get websocket :ring-ajax-get-or-ws-handshake)
+          server                        (run-server (->http-handler ring-ajax-post ring-ajax-get-or-ws-handshake) options)]
       (assoc component :server server)))
   (stop [component]
     (when server
@@ -14,6 +16,6 @@
       (assoc component :server nil))))
 
 (defn new-webserver
-  ([handler port]
-   (map->WebServer {:handler handler
-                    :options {:port port :join? false}})))
+  ([->http-handler port]
+   (map->WebServer {:->http-handler ->http-handler
+                    :options        {:port port :join? false}})))

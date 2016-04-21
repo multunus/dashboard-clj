@@ -63,18 +63,16 @@ go to the main cljs namespace in your application. If your project name is `deli
             [dashboard-clj.widgets.simple-text :as s]))
 
 
-(def dashboard {:layout grid/grid-layout
-                :widgets [{:name s/simple-text-widget
+(def dashboard {:layout :grid-layout
+                :widgets [{:name :bangalre-weather
+                           :type :simple-text-widget
                            :text "Hello World!!"
-                           :pos {:x 0 :y 0 :h 1 :w 2 }
-                           }
-                           {:name s/simple-text-widget
+                           :data-source :bangalore-weather
+                           :layout-opts {:pos {:x 0 :y 1 :h 1 :w 2 }}}
+                          {:name :simple-text-wi  dget
                            :text "Hello World!!"
-                           :pos {:x 0 :y 1 :h 1 :w 2 }
-                           }]})
+                           :layout-opts {:position {:x 0 :y 1 :h 1 :w 2 }}}]})
                          
-
-
 (d/render-dashboard dashboard "app")
 
 ```

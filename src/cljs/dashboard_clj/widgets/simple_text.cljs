@@ -1,9 +1,11 @@
 (ns dashboard-clj.widgets.simple-text
-  (:require [reagent.core :as r :refer [atom]]))
+  (:require [reagent.core :as r :refer [atom]]
+            [dashboard-clj.widgets.core :as widget-common]))
 
-(defn simple-text-widget[text]
+
+(defmethod widget-common/create-widget :simple-text [{:keys [text data] :as w}]
   [:div
-   [:div {:class "simple-text-widget"} text]])
+   [:div {:class "simple-text-widget"} (get-in @data [:value])]])
   
 
   

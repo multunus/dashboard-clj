@@ -17,6 +17,7 @@
                  [org.immutant/scheduling "2.1.3"]
                  [reagent "0.6.0-alpha"]
                  [com.taoensso/sente "1.8.1"]
+                 [re-frame "0.7.0"]
                  [cljsjs/react-grid-layout "0.10.8-0"]]
 
   :plugins [[lein-cljsbuild "1.1.1"]

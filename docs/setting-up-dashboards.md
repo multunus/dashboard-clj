@@ -54,6 +54,7 @@ go to the main cljs namespace in your application. If your project name is `deli
 
 ### A simple dashboard with two widgets, which uses a grid layout
 
+
 ```
 
 (ns deliverit-dashboard.core
@@ -62,13 +63,23 @@ go to the main cljs namespace in your application. If your project name is `deli
             [dashboard-clj.widgets.simple-text :as s]))
 
 
+(def dashboard {:layout :grid-layout
+                :widgets [{:name :bangalre-weather
+                           :type :simple-text-widget
+                           :text "Hello World!!"
+                           :data-source :bangalore-weather
+                           :layout-opts {:pos {:x 0 :y 1 :h 1 :w 2 }}}
+                          {:name :simple-text-wi  dget
+                           :text "Hello World!!"
+                           :layout-opts {:position {:x 0 :y 1 :h 1 :w 2 }}}]})
+                         
+(d/render-dashboard dashboard "app")
 
-(def layout (grid/grid-layout [[s/simple-text-widget {:name :widget-one :text "Hello world" :pos {:x 0 :y 0 :h 1 :w 2 }}]
-                               [s/simple-text-widget {:name :widget-two :text "World!!" :pos {:x 0 :y 1 :h 1 :w 2}}]]))
-
-
-(d/render-dashboard layout "app")
-    
 ```
+
+
+
+
+
 
 

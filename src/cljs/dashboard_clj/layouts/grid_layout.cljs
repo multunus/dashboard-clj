@@ -13,4 +13,11 @@
 (defmethod layout-common/create-layout :grid-layout [{:keys[widgets]}]
   [grid-layout-adapter
    {:className "layout" :cols 4 :rowHeight 30 :width 1200 }
-   (doall (for [widget  widgets] (widget-wrapper widget)))])
+   (doall (for [widget  widgets]
+            (widget-wrapper widget)))])
+
+
+
+
+
+

@@ -117,6 +117,7 @@
               :cljsbuild {:builds
                           {:app
                            {:source-paths ^:replace ["src/cljs"]
+                            :jar true
                             :compiler
                             {:optimizations :advanced
                              :pretty-print false}}}}}})

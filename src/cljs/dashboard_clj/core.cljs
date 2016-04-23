@@ -20,7 +20,6 @@
 (rf/register-handler
  :update-data-source
  (fn [app-state [_ data-source new-val]]
-    data-source new-val))
    (assoc-in  app-state [:data-sources data-source] new-val)))
 
 

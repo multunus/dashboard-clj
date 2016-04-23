@@ -4,8 +4,12 @@
 
 
 (defmethod widget-common/widget :simple-text [{:keys [text data] :as w}]
-  [:div
-   [:div {:class "simple-text-widget"} (get-in @data [:value])]])
+  [:div {:class "simple-text-widget"}
+   [:span {:class "title"} (:title w)]
+   [:div {:class "data"}
+    [:span 
+     (get-in @data [:value]) (:text w)]]
+   ])
   
 
   

@@ -24,13 +24,13 @@ Add dashbaord-clj in your project.clj dependencies
 
 ### Configure data source
 
-Data source requires a unique name, a fully qualified function name and a schedule. Data source is the way to collect data periodically as per the schedule and publish it to the dashboard. You could use the following configuration to setup a datasource,
+Data source requires a unique name, a fully qualified function name for reading data and a schedule. Data source is the way to collect data periodically as per the schedule and publish it to the dashboard. You could use the following configuration to setup a datasource,
 
 ```
 
 (def datasources [{
      :name :banglore-weather
-     :fn-name :dashboard-clj.plugins.weather.core/fetch
+     :read-fn :dashboard-clj.plugins.weather.core/fetch
      :params [{:city "Bangalore"}]
      :schedule {
                 :in [0 :seconds]

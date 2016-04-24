@@ -3,34 +3,20 @@
             [immutant.scheduling :as s]))
 
 (declare schedule)
-(declare resolve-fn)
 
-(defrecord Scheduler [datasources schedules]
+(defrecord Scheduler [data-sources schedules]
   component/Lifecycle
   (start [component]
-    (let [schedules (doall (map schedule datasources))]
+    (let [schedules (doall (map schedule data-sources))]
       (assoc component :schedules schedules)))
   (stop [component]
     (when schedules
       (s/stop)
       (assoc component :schedules nil))))
 
-(defn new-scheduler [datasources]
-  (map->Scheduler {:datasources datasources}))
+(defn new-scheduler [data-sources]
+  (map->Scheduler {:data-sources data-sources}))
 
 
-(defn- schedule [{:keys [name fn-name params schedule]}]
-  (s/schedule #(apply (resolve-fn fn-name) params) schedule))
-
-
-(defn- kw->fn [kw]
-  (try
-    (let [user-ns (symbol (namespace kw))
-          user-fn (symbol (name kw))]
-      (or (ns-resolve user-ns user-fn)
-          (throw (Exception.))))
-    (catch Throwable e
-      (throw (ex-info (str "Could not resolve symbol on the classpath, did you require the file that contains the symbol " kw "?") {:kw kw})))))
-
-(defn- resolve-fn [fn-name]
-  (kw->fn fn-name))
+(defn- schedule [data-source]
+  (s/schedule #(.fetch data-source) (.schedule data-source)))

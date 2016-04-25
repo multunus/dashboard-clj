@@ -68,7 +68,7 @@ go to the main cljs namespace in your application. If your project name is `deli
                            :type :simple-text-widget
                            :text "Hello World!!"
                            :data-source :bangalore-weather
-                           :layout-opts {:pos {:x 0 :y 1 :h 1 :w 2 }}}
+                           :layout-opts {:position {:x 0 :y 1 :h 1 :w 2 }}}
                           {:name :simple-text-widget
                            :text "Hello World!!"
                            :layout-opts {:position {:x 0 :y 1 :h 1 :w 2 }}}]})

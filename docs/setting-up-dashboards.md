@@ -69,11 +69,11 @@ go to the main cljs namespace in your application. If your project name is `deli
                            :text "Hello World!!"
                            :data-source :bangalore-weather
                            :layout-opts {:pos {:x 0 :y 1 :h 1 :w 2 }}}
-                          {:name :simple-text-wi  dget
+                          {:name :simple-text-widget
                            :text "Hello World!!"
                            :layout-opts {:position {:x 0 :y 1 :h 1 :w 2 }}}]})
                          
-(d/render-dashboard dashboard "app")
+(d/start-dashboard dashboard "app")
 
 ```
 

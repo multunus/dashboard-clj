@@ -12,7 +12,7 @@ lein new chestnut <your-dashboard-name> -- --vanilla --http-kit
 
 ## Set up dashboard-clj as a dependecy
 
-Add dashbaord-clj in your project.clj dependencies
+Add dashboard-clj in your project.clj dependencies
 
 ```
 

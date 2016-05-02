@@ -8,7 +8,7 @@
    [:span {:class "title"} (:title w)]
    [:div {:class "data"}
     [:span 
-     (get-in @data [:value]) (:text w)]]
+     (get-in @data [:data]) (:text w)]]
    ])
   
 

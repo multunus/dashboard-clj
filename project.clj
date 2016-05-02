@@ -25,7 +25,7 @@
 
   :min-lein-version "2.6.1"
 
-  :source-paths ["src/clj" "src/cljs" "dev"]
+  :source-paths ["src/clj" "src/cljs"]
 
   :test-paths ["test/clj"]
 
@@ -93,7 +93,8 @@
   :doo {:build "test"}
 
   :profiles {:dev
-             {:dependencies [[figwheel "0.5.2"]
+             {:source-paths ["dev"]
+              :dependencies [[figwheel "0.5.2"]
                              [figwheel-sidecar "0.5.2"]
                              [com.cemerick/piggieback "0.2.1"]
                              [org.clojure/tools.nrepl "0.2.12"]]

@@ -18,7 +18,9 @@
                  [reagent "0.6.0-alpha"]
                  [com.taoensso/sente "1.8.1"]
                  [re-frame "0.7.0"]
-                 [cljsjs/react-grid-layout "0.10.8-0"]]
+                 [cljsjs/react-grid-layout "0.10.8-0"]
+                 [cljsjs/highcharts "4.2.2-2"]
+                 [cljsjs/jquery "2.2.2-0"]]
 
   :plugins [[lein-cljsbuild "1.1.1"]
             [lein-environ "1.0.1"]]

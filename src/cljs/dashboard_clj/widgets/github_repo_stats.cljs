@@ -8,19 +8,20 @@
   [:div {:class "github-repo-stats"}
    [:img {:class "github-logo" :src "/images/github_mark.png"}]
    [:h2 {:class "title" } (:repo-name w)]
-   [:h4 {:class "total-commits"} (str "commits: "(reduce + (map #(second %) (get-in @data [:data :commit-data]))))]
+   [:h4 {:class "total-commits"} (str "commits: "(reduce + (map #(second %) (get-in @data [:data :weekly-commit-breakdown]))))]
    [:table {:class "contributors"}
+    [:tbody
     [:tr
      [:th "contributors"]]
      (doall (for [contributor (get-in @data [:data :contributors])]
               [:tr {:key contributor}
-               [:th (str contributor)]]))]
+               [:th (str contributor)]]))]]
    [:div {:class "commit-chart" :style { :width "95%" :height "40%"}} 
     [charts/line-chart {:chart-options
                         {:title {:text text}
-                         :xAxis {:categories (mapv first (get-in @data [:data :commit-data]))}
+                         :xAxis {:categories (mapv first (get-in @data [:data :weekly-commit-breakdown]))}
                          :series [{:name "commits"
-                                   :data (mapv second (get-in @data [:data :commit-data]))}]}}]]])
+                                   :data (mapv second (get-in @data [:data :weekly-commit-breakdown]))}]}}]]])
 
 
 

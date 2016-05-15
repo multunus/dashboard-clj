@@ -8,22 +8,20 @@
             [dashboard-clj.layouts.core :as layout]
             [re-frame.core :as rf]))
 
-(defn initial-state [val]
-  {:data-sources {}})
-
 
 (rf/register-handler
  :initialize
  (fn
    [db _]
-   (let [new-val (rand-int 100)]
-     (merge db (initial-state new-val)))))
+     (merge db {:data-sources {}})))
 
 
 (rf/register-handler
  :update-data-source
  (fn [app-state [_ data-source new-val]]
    (assoc-in  app-state [:data-sources data-source] new-val)))
+
+
 
 
 (defn register-global-app-state-subscription[]
@@ -33,18 +31,28 @@
      (reaction
       (get-in @db (flatten [:data-sources db-path]))))))
 
+
+
 (defn connect-to-data-sources []
-  (let [{:keys [chsk ch-recv send-fn state]} (sente/make-channel-socket! "/chsk" {:type :auto})]
+  (let [{:keys  [chsk ch-recv send-fn state]} (sente/make-channel-socket! "/chsk" {:type :auto})]
     (asyncm/go-loop []
       (let [{:keys [event id ?data send-fn]} (async/<! ch-recv)]
+        (.log js/console "received event "(str id))
         (when (= (get ?data 0) :data-source/event)
+          (.log js/console (str "got event:" event))
           (let [[_ [ds-name ds-data]] ?data]
             (rf/dispatch [:update-data-source ds-name ds-data])))
-        (recur)))))
+        (when (and
+               (= id :chsk/state)
+               (= (:first-open? ?data) true))
+          (.log js/console (str "channel ready"))
+          (send-fn [:dashboard-clj.core/sync])))
+        (recur))))  
+
 
 (defn start-dashboard[dashboard element_id]
-  (rf/dispatch-sync [:initialize])
-  (connect-to-data-sources)
+  (rf/dispatch-sync [:initialize]) 
   (register-global-app-state-subscription)
+  (connect-to-data-sources)  
   (let [new-layout (layout/create-layout dashboard)]
     (r/render new-layout (.getElementById js/document element_id))))

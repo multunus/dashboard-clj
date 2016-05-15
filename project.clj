@@ -20,80 +20,31 @@
                  [re-frame "0.7.0"]
                  [cljsjs/react-grid-layout "0.10.8-0"]
                  [cljsjs/highcharts "4.2.2-2"]
-                 [cljsjs/jquery "2.2.2-0"]]
+                 [cljsjs/jquery "1.11.3-0"]]
 
   :plugins [[lein-cljsbuild "1.1.1"]
             [lein-environ "1.0.1"]]
-
   :min-lein-version "2.6.1"
-
   :source-paths ["src/clj" "src/cljs"]
-
   :test-paths ["test/clj"]
-
   :clean-targets ^{:protect false} [:target-path :compile-path "resources/public/js"]
-
   :uberjar-name "dashboard-clj.jar"
-
-  ;; Use `lein run` if you just want to start a HTTP server, without figwheel
-  ;;:main dashboard-clj.core
-
-  ;; nREPL by default starts in the :main namespace, we want to start in `user`
-  ;; because that's where our development helper functions like (run) and
-  ;; (browser-repl) live.
   :repl-options {:init-ns user}
-
   :env { :http-port 10555}
-
   :cljsbuild {:builds
               {:app
                {:source-paths ["src/cljs"]
 
                 :figwheel true
-                ;; Alternatively, you can configure a function to run every time figwheel reloads.
-                ;; :figwheel {:on-jsload "dashboard-clj.core/on-figwheel-reload"}
-
                 :compiler {:main dashboard-clj.core
                            :asset-path "js/compiled/out"
                            :output-to "resources/public/js/compiled/dashboard_clj.js"
                            :output-dir "resources/public/js/compiled/out"
                            :source-map-timestamp true}}}}
-
-  ;; When running figwheel from nREPL, figwheel will read this configuration
-  ;; stanza, but it will read it without passing through leiningen's profile
-  ;; merging. So don't put a :figwheel section under the :dev profile, it will
-  ;; not be picked up, instead configure figwheel here on the top level.
-
-  :figwheel {;; :http-server-root "public"       ;; serve static assets from resources/public/
-             ;; :server-port 3449                ;; default
-             ;; :server-ip "127.0.0.1"           ;; default
+  :figwheel {
              :css-dirs ["resources/public/css"]  ;; watch and update CSS
-
-             ;; Instead of booting a separate server on its own port, we embed
-             ;; the server ring handler inside figwheel's http-kit server, so
-             ;; assets and API endpoints can all be accessed on the same host
-             ;; and port. If you prefer a separate server process then take this
-             ;; out and start the server with `lein run`.
-
-             ;; Start an nREPL server into the running figwheel process. We
-             ;; don't do this, instead we do the opposite, running figwheel from
-             ;; an nREPL process, see
-             ;; https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl
-             ;; :nrepl-port 7888
-
-             ;; To be able to open files in your editor from the heads up display
-             ;; you will need to put a script on your path.
-             ;; that script will have to take a file path and a line number
-             ;; ie. in  ~/bin/myfile-opener
-             ;; #! /bin/sh
-             ;; emacsclient -n +$2 $1
-             ;;
-             ;; :open-file-command "myfile-opener"
-
              :server-logfile "log/figwheel.log"}
-
   :doo {:build "test"}
-
   :profiles {:dev
              {:source-paths ["dev"]
               :dependencies [[figwheel "0.5.2"]

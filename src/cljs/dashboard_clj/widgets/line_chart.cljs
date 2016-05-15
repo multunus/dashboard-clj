@@ -11,7 +11,15 @@
 
 (def line-chart-config
   {:chart {:type "column"
-           :backgroundColor "transparent" }})
+           :backgroundColor "transparent"
+           :renderTo "container"
+           :style {:labels {
+                            :fontFamily "monospace"
+                            :color "#FFFFFF"}}}
+   :yAxis {:title {:text "Commits"
+                   :style {:color "#000000"}}
+           :labels { :color "#ffffff"}} 
+   :xAxis {:labels {:style {:color "#fff"}}}})
 
 
 (defn plot-line [this]

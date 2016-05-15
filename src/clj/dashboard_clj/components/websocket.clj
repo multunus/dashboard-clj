@@ -7,7 +7,7 @@
 (defmulti -client-ev-handler (fn [_ y] (:id y)))
 
 (defn client-ev-handler [server {:as ev-msg :keys [id ?data event]}]
-  (-event-msg-handler server ev-msg))
+  (-client-ev-handler server ev-msg))
 
 (defmethod -client-ev-handler :default [server {:as ev-msg :keys [id ?data event]}]
   (println "un handled client event" id))
@@ -16,8 +16,8 @@
 (defmethod  -client-ev-handler :dashboard-clj.core/sync
   [ {:as ctx :keys [data-sources chsk-send!]} {:as ev-msg :keys [id ?data event uid]}]
   (doseq [event (map #(ds/data->event (:name %) (deref (:data %)))
-                     data-sources]
-          ((chsk-send! uid event)))
+                     data-sources)]
+          (chsk-send! uid event)))
 
 
 

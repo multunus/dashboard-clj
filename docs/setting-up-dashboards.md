@@ -133,4 +133,4 @@ Once the configuration is set up, all you have to do is fire up the dashboard:
 `app` is the HTML id of the element into which the dashboard will be rendered.
 
 ## Example
-To get a better feel for the above documentation, here’s an [example project](https://github.com/kp2222/deliverit-dashboard) that has used dashboard-clj to implement a [simple Github repos summary dashboard](https://github.com/kp2222/deliverit-dashboard).
+To get a better feel for the above documentation, here’s an [example project](https://github.com/kp2222/deliverit-dashboard) that has used `dashboard-clj` to implement a [simple Github repos summary dashboard](https://protected-wave-36452.herokuapp.com/).

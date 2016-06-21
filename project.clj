@@ -18,7 +18,7 @@
                  [reagent "0.6.0-alpha"]
                  [com.taoensso/sente "1.8.1"]
                  [re-frame "0.7.0"]
-                 [cljsjs/react-grid-layout "0.10.8-0"]
+                 [cljsjs/react-grid-layout "0.12.4-0"]
                  [cljsjs/highcharts "4.2.2-2"]
                  [cljsjs/jquery "1.11.3-0"]]
 

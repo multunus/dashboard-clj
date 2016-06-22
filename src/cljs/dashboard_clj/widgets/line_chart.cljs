@@ -12,7 +12,7 @@
 (def line-chart-config
   {:chart {:type "column"
            :backgroundColor "transparent"
-           :renderTo "container"
+           
            :style {:labels {
                             :fontFamily "monospace"
                             :color "#FFFFFF"}}}

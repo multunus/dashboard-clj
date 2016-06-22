@@ -4,18 +4,21 @@
             [dashboard-clj.widgets.line-chart :as charts]))
 
 
-(defmethod widget-common/widget :github-repo-stats [{:keys [text data] :as w}]
+(defmethod widget-common/widget :github-repo-stats [{:keys [text data options] :as w}]
   [:div {:class "github-repo-stats"}
-   [:img {:class "github-logo" :src "/images/github_mark.png"}]
-   [:h2 {:class "title" } (:repo-name w)]
-   [:h4 {:class "total-commits"} (str "commits: "(reduce + (map #(second %) (get-in @data [:data :weekly-commit-breakdown]))))]
-   [:table {:class "contributors"}
-    [:tbody
-    [:tr
-     [:th "contributors"]]
-     (doall (for [contributor (get-in @data [:data :contributors])]
-              [:tr {:key contributor}
-               [:th (str contributor)]]))]]
+   [:div.header {:style {:background  (:color options)}}
+    [:img {:class "github-logo" :src "/images/github_mark.png"}]
+    [:h2 {:class "title" }(str "Hello: " (:repo-name w))]]
+   [:div#total-commits
+    [:p {:class "subheading"} "Total commits"]
+    [:h4 {:class "total-commits" :style {:background (:color options)}} (get-in @data [:data :total-commits])]]
+    [:table {:class "contributors"}
+     [:tbody
+      [:tr
+       [:th {:class "subheading" }"contributors"]]
+      (doall (for [contributor (get-in @data [:data :contributors])]
+               [:tr {:key contributor}
+                [:td (str contributor)]]))]]
    [:div {:class "commit-chart" :style { :width "95%" :height "40%"}} 
     [charts/line-chart {:chart-options
                         {:title {:text text}

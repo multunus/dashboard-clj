@@ -13,7 +13,7 @@
  :initialize
  (fn
    [db _]
-     (merge db {:data-sources {}})))
+   (merge db {:data-sources {}})))
 
 
 (rf/register-handler
@@ -37,22 +37,19 @@
   (let [{:keys  [chsk ch-recv send-fn state]} (sente/make-channel-socket! "/chsk" {:type :auto})]
     (asyncm/go-loop []
       (let [{:keys [event id ?data send-fn]} (async/<! ch-recv)]
-        (.log js/console "received event "(str id))
         (when (= (get ?data 0) :data-source/event)
-          (.log js/console (str "got event:" event))
           (let [[_ [ds-name ds-data]] ?data]
             (rf/dispatch [:update-data-source ds-name ds-data])))
         (when (and
                (= id :chsk/state)
                (= (:first-open? ?data) true))
-          (.log js/console (str "channel ready"))
           (send-fn [:dashboard-clj.core/sync])))
-        (recur))))  
+      (recur))))
 
 
 (defn start-dashboard[dashboard element_id]
-  (rf/dispatch-sync [:initialize]) 
+  (rf/dispatch-sync [:initialize])
   (register-global-app-state-subscription)
-  (connect-to-data-sources)  
+  (connect-to-data-sources)
   (let [new-layout (layout/create-layout dashboard)]
     (r/render new-layout (.getElementById js/document element_id))))

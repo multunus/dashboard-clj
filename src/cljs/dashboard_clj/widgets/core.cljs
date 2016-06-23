@@ -2,12 +2,13 @@
   (:require-macros [reagent.ratom :refer [reaction]])
   (:require [re-frame.core :as rf]))
 
+(def widget (atom {}))
 
-(defmulti widget :type)
+(defn register-widget [name w]
+  (swap! widget assoc name w))
 
-(defn setup-widget[w]
-  (if (:data-source w)
-    (let [data (rf/subscribe [:app-db (:data-source w)])
-          w (merge w {:data data})]
-      [widget w])
-    (widget w)))
+(defn setup-widget [{:keys [:data-source :type] :as w}]
+  (if data-source
+    (let [data (rf/subscribe [:app-db data-source])]
+      [(get @widget type) (merge w {:data data})])
+    ((get @widget type) w)))

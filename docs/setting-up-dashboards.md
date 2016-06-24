@@ -6,7 +6,7 @@
 
 With Leiningen, add
 ```clojure
-[dashboard-clj "0.1.0-SNAPSHOT"]
+[com.multunus/dashboard-clj "0.1.0-SNAPSHOT"]
 ```
 
 ## Usage

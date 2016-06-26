@@ -19,6 +19,8 @@
                  [com.taoensso/sente "1.8.1"]
                  [re-frame "0.7.0"]
                  [cljsjs/react-grid-layout "0.12.4-0"]]
+  :deploy-repositories [["releases" :clojars]
+                        ["snapshots" :clojars]]
 
   :plugins [[lein-cljsbuild "1.1.1"]
             [lein-environ "1.0.1"]]

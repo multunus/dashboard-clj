@@ -7,8 +7,8 @@
 (defn register-widget [name w]
   (swap! widget-store assoc name w))
 
-(defn setup-widget [{:keys [:data-source :type] :as w}]
+(defn setup-widget [{:keys [data-source type options]}]
   (if data-source
     (let [data (rf/subscribe [:app-db data-source])]
-      [(get @widget-store type) (merge w {:data data})])
-    ((get @widget-store type) w)))
+      [(get @widget-store type) @data options])
+    ((get @widget-store type) nil options)))

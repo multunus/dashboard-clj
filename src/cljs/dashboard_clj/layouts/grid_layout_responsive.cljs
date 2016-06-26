@@ -26,7 +26,7 @@
 
 
 (defn widget-wrapper[w]
-  [:div {:key (:name w) :class "widget" :style (:style w)}
+  [:div {:key (:name w) :class "widget"}
    (widget-common/setup-widget w)])
 
 

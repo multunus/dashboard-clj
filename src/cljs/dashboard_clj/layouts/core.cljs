@@ -6,4 +6,4 @@
   (swap! layout-store assoc name l))
 
 (defn setup-layout [name {:keys [widgets options]}]
-  ((get @layout-store name) widgets options))
+  [(get @layout-store name) widgets options])

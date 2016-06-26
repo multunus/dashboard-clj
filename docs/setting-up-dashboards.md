@@ -65,28 +65,26 @@ The first thing we need to do is load the libraries required for a particular da
 ```clojure
 (:require [dashboard-clj.core :as dashboard]
           [dashboard-clj.layouts.grid-layout :as grid]
-          [dashboard-clj.widgets.simple-text]
-          [dashboard-clj.widgets.github-repo-stats])
+          [dashboard-widgets.widgets.simple-text]
+          [dashboard-widgets.widgets.github-repo-stats])
 ```
 
-The dashboard currently supports only a [grid layout](https://github.com/STRML/react-grid-layout), meaning that the initial configuration of the widgets can be configured according to a predefined grid system as specified in the readme of the grid layout project.
+The dashboard currently supports only [grid layout](https://github.com/STRML/react-grid-layout), meaning that the initial configuration of the widgets can be configured according to a predefined grid system as specified in the readme of the grid layout project. 
 
 The various configurations of the dashboard widgets are supplied through a hashmap containing the following sample structure:
 ```clojure
-    {:layout :grid-layout
-     :layout-opts {:rowHeight 500 :cols 6}
+    {:layout :responsive-grid-layout
+     :layout-opts {:cols {:lg 6 :md 4 :sm 2 :xs 1 :xxs 1}}
      :widgets [
                 {
                  :type :github-repo-stats
                  :name :first-widget
                  :data-source :sample-dashboard-stats
-                 :repo-name "Sample Dashboard"
-                 :title "commits"
-                 :text "commit history"
-                 :layout-opts {:position {:x 0 :y 0  :h 1 :w 2 }}
-                 :style {:background-color "#ffffff"
-                         :font-family "Times New Roman, Times, serif"
-                         :font-size "20"}}
+                 :options {
+                          :repo-name "Sample Dashboard"
+                          :title "commits"
+                          :text "commit history"}
+                 :layout-opts {:position {:x 0 :y 0  :h 1 :w 2 }}}
                 ...
                 ]})
 ```
@@ -94,18 +92,18 @@ The various configurations of the dashboard widgets are supplied through a hashm
 Here’s what the main keys stand are for:
 
 * `:layout` - 
-The type of layout to be used for the widget. Right now the only supported option is `:grid-layout`.
+The type of layout to be used for the widget. Right now the only supported option are `responsive-grid-layout` and `:grid-layout` (via [grid layout](https://github.com/STRML/react-grid-layout)). 
 
 * `:layout-opts` - 
-The height and width of the layout area in terms of generic grid units, e.g. `:cols` 6 divides the entire space into 6 columns.
+The height and width of the layout area in terms of generic grid units, for different screen sizes e.g. `:cols` 6 divides the entire space into 6 columns.
 
 * `:widgets` -
-A vector of individual widget configurations as explained below.
+A vector of individual widget configurations as explained below. There are no widgets available as part of the core library, but we might create another repo with most common widgets. Note: the library ```dashboard-widgets``` used in the example does not exist, yet!
 
-There are two widgets built in the dashboard, namely a simple text widget and a Github repository summary widget. Here’s the hashmap structure for the widget configurations:
+So, you might want to define a widget or reuse widget created by someone. Here’s the hashmap structure for the widget configurations:
 
 * `:type` -
-What type of widget this is. The two options currently supported are :simple-text and :github-repo-stats.
+What type of widget this is. For example, ```:simple-text```.
 
 * `:name` -
 An alias for the widget.
@@ -113,17 +111,12 @@ An alias for the widget.
 * `:data-source` -
 The name of the data source. This is the same name that is assigned to the `:name` attribute of the `datasources` map that we encountered before.
 
-* `:repo-name` -
-The title to be displayed at the top of the widget. This would typically be the name of the repository for which details are shown.
-
-* `:text` -
-The title of the commit breakdown graph shown at the bottom of the widget.
+* `:options` -
+Widget specific options. For example, title text for a widget.
 
 * `:layout-opts` -
 This dictates the position of and area covered by the widget, e.g. `{:position {:x 0 :y 0  :h 1 :w 2 }}`. `x` and `y` for the top-left position of the `h` and `w` for the height and width. All are given in generic grid units.
 
-* `:style` -
-Additional styles to be applied to the widget. These can be given as are usually specified for Reagent components. Of course styles can also be specified elsewhere, e.g. in other CSS files included.
 
 Once the configuration is set up, all you have to do is fire up the dashboard:
 ```clojure

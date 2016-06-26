@@ -3,4 +3,4 @@
 
 ## Development
 
-[checkout development docs - WIP] (docs/)
+[checkout docs - WIP] (docs/)

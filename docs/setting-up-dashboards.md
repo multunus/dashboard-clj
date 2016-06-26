@@ -64,7 +64,7 @@ Once this happens, the read function will be executed as dictated to the schedul
 The first thing we need to do is load the libraries required for a particular dashboard. These include the core, layouts and individual widgets.
 ```clojure
 (:require [dashboard-clj.core :as dashboard]
-          [dashboard-clj.layouts.grid-layout :as grid]
+          [dashboard-clj.layouts.responsive-grid-layout :as grid]
           [dashboard-widgets.widgets.simple-text]
           [dashboard-widgets.widgets.github-repo-stats])
 ```
@@ -74,7 +74,8 @@ The dashboard currently supports only [grid layout](https://github.com/STRML/rea
 The various configurations of the dashboard widgets are supplied through a hashmap containing the following sample structure:
 ```clojure
     {:layout :responsive-grid-layout
-     :layout-opts {:cols {:lg 6 :md 4 :sm 2 :xs 1 :xxs 1}}
+     :options {
+              :layout-opts {:cols {:lg 6 :md 4 :sm 2 :xs 1 :xxs 1}}}
      :widgets [
                 {
                  :type :github-repo-stats

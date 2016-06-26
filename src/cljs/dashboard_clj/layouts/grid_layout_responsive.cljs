@@ -11,17 +11,17 @@
 (def responsive-grid-layout-adapter (r/adapt-react-class (width-provider. responsive-grid-layout)))
 
 
-(defn calculate-layout [{:as dashboard :keys [widgets]}]
+(defn calculate-layout [widgets]
   (into {}
-        (for [brp [:lg :md, :sm :xs :xxs]
-              :let [brp-pos
-                    (into [] (for [widget (:widgets dashboard)
-                                   :let [pos (get-in widget [:layout-opts :position brp])]
-                                   :when (not (nil? pos))]
-                               (merge pos {:i (:name widget )})))]
+        (for [brp   [:lg :md, :sm :xs :xxs]
+              :let  [brp-pos
+                     (into [] (for [widget widgets
+                                    :let [pos (get-in widget [:layout-opts :position brp])]
+                                    :when (not (nil? pos))]
+                                (merge pos {:i (:name widget )})))]
               :when (not-empty brp-pos)]
-              {brp brp-pos})))
-              
+          {brp brp-pos})))
+
 (def default-layout-opts {:className "layout"})
 
 
@@ -30,12 +30,10 @@
    (widget-common/setup-widget w)])
 
 
-(defmethod layout-common/create-layout :responsive-grid-layout [{:keys[widgets] :as dashboard}]
-  [responsive-grid-layout-adapter
-   (merge default-layout-opts (:layout-opts dashboard) {:layouts(calculate-layout dashboard)})
-   (doall (for [widget  widgets]
-            (widget-wrapper widget)))])
-
-
-
-
+(layout-common/register-layout
+ :responsive-grid-layout
+ (fn [widgets options]
+   [responsive-grid-layout-adapter
+    (merge default-layout-opts (:layout-opts options) {:layouts (calculate-layout widgets)})
+    (doall (for [widget  widgets]
+             (widget-wrapper widget)))]))

@@ -51,5 +51,5 @@
   (rf/dispatch-sync [:initialize])
   (register-global-app-state-subscription)
   (connect-to-data-sources)
-  (let [new-layout (layout/create-layout dashboard)]
+  (let [new-layout (layout/setup-layout (get dashboard :layout) dashboard)]
     (r/render new-layout (.getElementById js/document element_id))))

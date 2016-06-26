@@ -20,13 +20,9 @@
   [:div {:key (:name w) :_grid (get-in w [:layout-opts :position]) :class "widget" :style (:style w)}
    (widget-common/setup-widget w)])
 
-(defmethod layout-common/create-layout :grid-layout [{:keys[widgets] :as dashbord}]
-  [grid-layout-adapter (merge layout-defaults (:layout-opts dashbord))
-   (doall (for [widget  widgets]
-            (widget-wrapper widget)))])
-
-
-
-
-
-
+(layout-common/register-layout
+ :grid-layout
+ (fn [widgets options]
+   [grid-layout-adapter (merge layout-defaults (:layout-opts options))
+    (doall (for [widget  widgets]
+             (widget-wrapper widget)))]))

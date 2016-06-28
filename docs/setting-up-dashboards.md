@@ -8,6 +8,15 @@ With Leiningen, add
 ```clojure
 [com.multunus/dashboard-clj "0.1.0-SNAPSHOT"]
 ```
+or use the leiningen project template
+
+- Add the following to your ```~/.lein/profiles.clj```
+
+```clojure
+{:user {:plugins [[dashboard-app/lein-template "0.0.1-SNAPSHOT"]]}}
+```
+
+- run ```lein new dashboard <your.project.name>```
 
 ## Usage
 

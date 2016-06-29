@@ -1,8 +1,8 @@
 (defproject com.multunus/dashboard-clj "0.1.0-SNAPSHOT"
   :description "Library to create dashboards"
   :url "https://github.com/multunus/dashboard-clj"
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :license {:name "MIT LICENSE"
+            :url  "https://opensource.org/licenses/MIT"}
 
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.8.40" :scope "provided"]

@@ -2,7 +2,7 @@
 
 A clojure mini-framework to setup dashboards inspired from [dashing](http://dashing.io/).
 
-Visualisation is a key part of analysing data and making decisions. But, setting up a dashboard involves the following challenges:
+A lot of plumbing work goes into building a dashboard. Setting up a dashboard involves the following challenges:
 
 - Fetching data
 - Scheduling data retrieval
@@ -11,7 +11,7 @@ Visualisation is a key part of analysing data and making decisions. But, setting
 
 ###Fetching
 
-Your Clojure code to retrieve data goes here. Every such function(data source) should have a unique name.
+Your Clojure code to retrieve data goes here. Every such function(data source) should be identified with a unique name.
 
 ###Scheduling
 
@@ -28,8 +28,10 @@ We are still figuring this part out. We are shipping a basic layout (react grid 
 ![Screenshot] (https://db.tt/AtDsHTHP)
 
 ## [Demo](https://protected-wave-36452.herokuapp.com/)
-## [Setup Doc](https://github.com/multunus/dashboard-clj/blob/master/docs/setting-up-dashboards.md)
+## [Usage](https://github.com/multunus/dashboard-clj/blob/master/docs/setting-up-dashboards.md)
 
 ##About
-![Multunus log](https://camo.githubusercontent.com/c0701d8866d0962ddc36db56dbf1ce93d712800e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6d756c74756e75732d696d616765732f4d756c74756e75735f4c6f676f5f566563746f725f726573697a65642e706e67)
+
+![Multunus logo](https://camo.githubusercontent.com/c0701d8866d0962ddc36db56dbf1ce93d712800e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6d756c74756e75732d696d616765732f4d756c74756e75735f4c6f676f5f566563746f725f726573697a65642e706e67)
+
 This is side effect of trying to learn Clojure during our [20% time](http://www.multunus.com/blog/2016/01/20-investment-time-background-story/). 

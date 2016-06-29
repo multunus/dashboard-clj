@@ -45,7 +45,7 @@ Since widgets are just reagent components, they are easy to create. Above all, t
 We can host this dashboard on Heroku in no time! Read about it [here](https://devcenter.heroku.com/articles/deploying-clojure-applications-with-the-heroku-leiningen-plugin).
 
 
-![Screenshot] (https://db.tt/AtDsHTHP)
+![Screenshot] (https://db.tt/Z5WnyEpj)
 
 ## [Demo](https://protected-wave-36452.herokuapp.com/)
 ## [Usage](https://github.com/multunus/dashboard-clj/blob/master/docs/setting-up-dashboards.md)

@@ -40,14 +40,15 @@ We are still trying to improve this part. We are shipping a basic layout(react g
 
 Since widgets are just reagent components, they are easy to create. Above all, tons of great libraries can be found [here](http://cljsjs.github.io/). In addition, the [reagent cookbook](https://github.com/reagent-project/reagent-cookbook) talks in depth on how to setup common libraries.
 
+###Deployment
+
+We can host this dashboard on Heroku in no time! Read about it [here](https://devcenter.heroku.com/articles/deploying-clojure-applications-with-the-heroku-leiningen-plugin).
+
+
 ![Screenshot] (https://db.tt/AtDsHTHP)
 
 ## [Demo](https://protected-wave-36452.herokuapp.com/)
 ## [Usage](https://github.com/multunus/dashboard-clj/blob/master/docs/setting-up-dashboards.md)
-
-###Deployment
-
-We can host this dashboard on Heroku in no time! Read about it [here](https://devcenter.heroku.com/articles/deploying-clojure-applications-with-the-heroku-leiningen-plugin).
 
 ##About
 

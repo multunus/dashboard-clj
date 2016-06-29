@@ -74,7 +74,7 @@ With the data source configuration set, we can now start the dashboard itself as
 (dashboard/start datasources {:port <port-number>})
 ```
 
-`datasources` here is the vector shown above that basically governs the supply of data to the dashboard itself. This will in turn fire up the various components required for the dashboard to function, namely the websocket server(sente), the web server(http-kit) and the scheduler(immutant scheduler). These are managed as [components](https://github.com/stuartsierra/component) in the system.
+`datasources` here is the vector shown above that basically governs the supply of data to the dashboard itself. This will in turn fire up the various components required for the dashboard to function, namely the websocket server([sente](https://github.com/ptaoussanis/sente)), the web server([http-kit](http://www.http-kit.org/)) and the scheduler([immutant scheduler](http://immutant.org/tutorials/scheduling/)). These are managed as [components](https://github.com/stuartsierra/component) in the system.
 
 Once this happens, the read function provided in the configuration will be executed as dictated to the scheduler and push data to the websocket server which in turn broadcasts the same to the clients.
 

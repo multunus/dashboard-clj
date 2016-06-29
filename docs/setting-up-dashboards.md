@@ -39,7 +39,6 @@ The basic function of the dashboard is of course to display data. In order for t
          :schedule {
            :in [0 :seconds]
            :every [5 :minutes]}}
-       ...
      ]
 ```
 

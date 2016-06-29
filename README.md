@@ -34,4 +34,4 @@ We are still figuring this part out. We are shipping a basic layout (react grid 
 
 ![Multunus logo](https://camo.githubusercontent.com/c0701d8866d0962ddc36db56dbf1ce93d712800e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6d756c74756e75732d696d616765732f4d756c74756e75735f4c6f676f5f566563746f725f726573697a65642e706e67)
 
-This is side effect of trying to learn Clojure during our [20% time](http://www.multunus.com/blog/2016/01/20-investment-time-background-story/). 
+We built this as part of learning Clojure in our [20% time](http://www.multunus.com/blog/2016/01/20-investment-time-background-story/). We will be supporting this library during our investment time and  using this to create internal dashboards at Multunus.

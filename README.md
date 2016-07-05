@@ -1,5 +1,7 @@
 # dashboard-clj
 
+[![Join the chat at https://gitter.im/multunus/dashboard-clj](https://badges.gitter.im/multunus/dashboard-clj.svg)](https://gitter.im/multunus/dashboard-clj?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A clojure mini-framework to build dashboards inspired by [dashing](http://dashing.io/).
 
 A lot of plumbing work goes into building a dashboard. Setting up a dashboard involves the following challenges:

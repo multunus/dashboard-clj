@@ -5,8 +5,7 @@
 (defrecord WebServer [server ->http-handler options websocket]
   component/Lifecycle
   (start [component]
-    (let [handler                       (get component :handler)
-          ring-ajax-post                (get websocket :ring-ajax-post)
+    (let [ring-ajax-post                (get websocket :ring-ajax-post)
           ring-ajax-get-or-ws-handshake (get websocket :ring-ajax-get-or-ws-handshake)
           server                        (run-server (->http-handler ring-ajax-post ring-ajax-get-or-ws-handshake) options)]
       (assoc component :server server)))

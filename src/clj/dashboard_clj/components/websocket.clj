@@ -2,7 +2,8 @@
   (:require [com.stuartsierra.component :as component]
             [taoensso.sente :as sente]
             [clojure.core.async :as async]
-            [dashboard-clj.data-source :as ds]))
+            [dashboard-clj.data-source :as ds]
+            [dashboard-clj.utils :as utils]))
 
 (defmulti -client-ev-handler (fn [_ y] (:id y)))
 
@@ -15,7 +16,7 @@
 
 (defmethod  -client-ev-handler :dashboard-clj.core/sync
   [ {:as ctx :keys [data-sources chsk-send!]} {:as ev-msg :keys [id ?data event uid]}]
-  (doseq [event (map #(ds/data->event (:name %) (deref (:data %)))
+  (doseq [event (map #(utils/data->event (:name %) (deref (:data %)))
                      data-sources)]
     (chsk-send! uid event)))
 
@@ -33,7 +34,6 @@
       (async/go-loop []
         (let [event (async/<! ch-out)]
           (doseq [cid (:any @connected-uids)]
-            (println (str "sending event:" event))
             (send-fn cid event))
           (recur)))
       (assoc component

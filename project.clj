@@ -1,4 +1,4 @@
-(defproject com.multunus/dashboard-clj "0.1.0-SNAPSHOT"
+(defproject com.multunus/dashboard-clj "0.1.1-SNAPSHOT"
   :description "Library to create dashboards"
   :url "https://github.com/multunus/dashboard-clj"
   :license {:name "MIT LICENSE"

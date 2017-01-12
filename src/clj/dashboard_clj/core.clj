@@ -4,5 +4,5 @@
 
 
 (defn start [ds-maps {:keys [port] :as options}]
-  (let [data-sources (map #(ds/new-data-source %) ds-maps)]
+  (let [data-sources (map #(ds/create-datasource %) ds-maps)]
     (system/start port data-sources)))

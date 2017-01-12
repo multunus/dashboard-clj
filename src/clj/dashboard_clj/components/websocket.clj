@@ -17,7 +17,7 @@
   [ {:as ctx :keys [data-sources chsk-send!]} {:as ev-msg :keys [id ?data event uid]}]
   (doseq [event (map #(ds/data->event (:name %) (deref (:data %)))
                      data-sources)]
-          (chsk-send! uid event)))
+    (chsk-send! uid event)))
 
 
 
@@ -33,6 +33,7 @@
       (async/go-loop []
         (let [event (async/<! ch-out)]
           (doseq [cid (:any @connected-uids)]
+            (println (str "sending event:" event))
             (send-fn cid event))
           (recur)))
       (assoc component

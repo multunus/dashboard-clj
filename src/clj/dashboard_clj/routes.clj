@@ -4,7 +4,7 @@
             [compojure.route :refer [resources]]
             [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
             [ring.middleware.gzip :refer [wrap-gzip]]
-            [ring.middleware.logger :refer [wrap-with-logger]])
+            )
   (:gen-class))
 
 
@@ -21,5 +21,5 @@
        (GET "/chsk" req (ring-ajax-get-or-ws-handshake req))
        (POST "/chsk" req (ring-ajax-post req)))
       (wrap-defaults api-defaults)
-      wrap-with-logger
+      ;wrap-with-logger
       wrap-gzip))

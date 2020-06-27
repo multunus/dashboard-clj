@@ -2,7 +2,6 @@
   (:require [clojure.core.async :as async]))
 
 (declare resolve-fn)
-(declare data->event)
 
 (defprotocol FetchableDataSource
   (fetch [this]))
@@ -13,7 +12,7 @@
     (let [new-data (apply (resolve-fn read-fn) params)]
       (reset! data new-data)
       (async/go
-        (async/>! output-chan (data->event name new-data))))))
+        (async/>! output-chan [:data-source/event [name {:data new-data}]])))))
 
 (defn new-data-source [{:keys [name read-fn params schedule]}]
   (map->DataSource {
@@ -23,9 +22,6 @@
                     :schedule    schedule
                     :output-chan (async/chan (async/sliding-buffer 1))
                     :data        (atom nil)}))
-
-(defn data->event [event-name data]
-  [:data-source/event [event-name {:data data}]])
 
 (defn- kw->fn [kw]
   (try

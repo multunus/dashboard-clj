@@ -3,7 +3,7 @@
             [dashboard-clj.components.webserver :as webserver]
             [dashboard-clj.components.scheduler :as scheduler]
             [dashboard-clj.components.websocket :as websocket]
-            [taoensso.sente.server-adapters.http-kit      :refer [sente-web-server-adapter]]
+            [taoensso.sente.server-adapters.http-kit    :refer [sente-web-server-adapter]]
             [com.stuartsierra.component :as component]))
 
 
